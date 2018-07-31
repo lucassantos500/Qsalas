@@ -1,3 +1,3 @@
 # SysSistema
-Diagrama Entidade Relacionamento
+Diagrama Entidade Relacionamento - Banco de dados dbComercio
 ![alt text](https://image.ibb.co/dtOLae/Diagrama_ER.png)
