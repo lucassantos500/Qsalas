@@ -32,33 +32,33 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtbuscar = new System.Windows.Forms.TextBox();
-            this.btnimprimir = new System.Windows.Forms.Button();
-            this.btndeletar = new System.Windows.Forms.Button();
-            this.btnbuscar = new System.Windows.Forms.Button();
-            this.lbltotal = new System.Windows.Forms.Label();
-            this.datalista = new System.Windows.Forms.DataGridView();
             this.chkdeletar = new System.Windows.Forms.CheckBox();
+            this.datalista = new System.Windows.Forms.DataGridView();
             this.Deletar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.lbltotal = new System.Windows.Forms.Label();
+            this.btnbuscar = new System.Windows.Forms.Button();
+            this.btndeletar = new System.Windows.Forms.Button();
+            this.btnimprimir = new System.Windows.Forms.Button();
+            this.txtbuscar = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtidcategoria = new System.Windows.Forms.TextBox();
-            this.txtnome = new System.Windows.Forms.TextBox();
-            this.txtdescricao = new System.Windows.Forms.TextBox();
-            this.btnsalvar = new System.Windows.Forms.Button();
-            this.btneditar = new System.Windows.Forms.Button();
-            this.btnnovo = new System.Windows.Forms.Button();
             this.btncancelar = new System.Windows.Forms.Button();
+            this.btnnovo = new System.Windows.Forms.Button();
+            this.btneditar = new System.Windows.Forms.Button();
+            this.btnsalvar = new System.Windows.Forms.Button();
+            this.txtdescricao = new System.Windows.Forms.TextBox();
+            this.txtnome = new System.Windows.Forms.TextBox();
+            this.txtidcategoria = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.errorIcone = new System.Windows.Forms.ErrorProvider(this.components);
             this.ttmensagem = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalista)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcone)).BeginInit();
             this.SuspendLayout();
@@ -102,16 +102,88 @@
             this.tabPage1.Text = "Listar";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // chkdeletar
             // 
-            this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 348);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Configurações";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.chkdeletar.AutoSize = true;
+            this.chkdeletar.Location = new System.Drawing.Point(47, 50);
+            this.chkdeletar.Name = "chkdeletar";
+            this.chkdeletar.Size = new System.Drawing.Size(60, 17);
+            this.chkdeletar.TabIndex = 7;
+            this.chkdeletar.Text = "Deletar";
+            this.chkdeletar.UseVisualStyleBackColor = true;
+            this.chkdeletar.CheckedChanged += new System.EventHandler(this.chkdeletar_CheckedChanged);
+            // 
+            // datalista
+            // 
+            this.datalista.AllowUserToAddRows = false;
+            this.datalista.AllowUserToDeleteRows = false;
+            this.datalista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.datalista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datalista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Deletar});
+            this.datalista.Location = new System.Drawing.Point(9, 88);
+            this.datalista.MultiSelect = false;
+            this.datalista.Name = "datalista";
+            this.datalista.ReadOnly = true;
+            this.datalista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datalista.Size = new System.Drawing.Size(750, 254);
+            this.datalista.TabIndex = 6;
+            this.datalista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalista_CellContentClick);
+            this.datalista.DoubleClick += new System.EventHandler(this.datalista_DoubleClick);
+            // 
+            // Deletar
+            // 
+            this.Deletar.HeaderText = "Deletar";
+            this.Deletar.Name = "Deletar";
+            this.Deletar.ReadOnly = true;
+            // 
+            // lbltotal
+            // 
+            this.lbltotal.AutoSize = true;
+            this.lbltotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltotal.Location = new System.Drawing.Point(471, 15);
+            this.lbltotal.Name = "lbltotal";
+            this.lbltotal.Size = new System.Drawing.Size(0, 13);
+            this.lbltotal.TabIndex = 5;
+            this.lbltotal.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // btnbuscar
+            // 
+            this.btnbuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnbuscar.Location = new System.Drawing.Point(207, 10);
+            this.btnbuscar.Name = "btnbuscar";
+            this.btnbuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnbuscar.TabIndex = 4;
+            this.btnbuscar.Text = "Buscar";
+            this.btnbuscar.UseVisualStyleBackColor = true;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
+            // 
+            // btndeletar
+            // 
+            this.btndeletar.Location = new System.Drawing.Point(288, 10);
+            this.btndeletar.Name = "btndeletar";
+            this.btndeletar.Size = new System.Drawing.Size(75, 23);
+            this.btndeletar.TabIndex = 3;
+            this.btndeletar.Text = "Deletar";
+            this.btndeletar.UseVisualStyleBackColor = true;
+            this.btndeletar.Click += new System.EventHandler(this.btndeletar_Click);
+            // 
+            // btnimprimir
+            // 
+            this.btnimprimir.Location = new System.Drawing.Point(684, 10);
+            this.btnimprimir.Name = "btnimprimir";
+            this.btnimprimir.Size = new System.Drawing.Size(75, 23);
+            this.btnimprimir.TabIndex = 2;
+            this.btnimprimir.Text = "Imprimir";
+            this.btnimprimir.UseVisualStyleBackColor = true;
+            // 
+            // txtbuscar
+            // 
+            this.txtbuscar.Location = new System.Drawing.Point(47, 12);
+            this.txtbuscar.Name = "txtbuscar";
+            this.txtbuscar.Size = new System.Drawing.Size(144, 20);
+            this.txtbuscar.TabIndex = 1;
+            this.txtbuscar.TextChanged += new System.EventHandler(this.txtbuscar_TextChanged);
             // 
             // label2
             // 
@@ -123,81 +195,16 @@
             this.label2.Text = "Nome";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // txtbuscar
+            // tabPage2
             // 
-            this.txtbuscar.Location = new System.Drawing.Point(47, 12);
-            this.txtbuscar.Name = "txtbuscar";
-            this.txtbuscar.Size = new System.Drawing.Size(144, 20);
-            this.txtbuscar.TabIndex = 1;
-            // 
-            // btnimprimir
-            // 
-            this.btnimprimir.Location = new System.Drawing.Point(684, 10);
-            this.btnimprimir.Name = "btnimprimir";
-            this.btnimprimir.Size = new System.Drawing.Size(75, 23);
-            this.btnimprimir.TabIndex = 2;
-            this.btnimprimir.Text = "Imprimir";
-            this.btnimprimir.UseVisualStyleBackColor = true;
-            // 
-            // btndeletar
-            // 
-            this.btndeletar.Location = new System.Drawing.Point(288, 10);
-            this.btndeletar.Name = "btndeletar";
-            this.btndeletar.Size = new System.Drawing.Size(75, 23);
-            this.btndeletar.TabIndex = 3;
-            this.btndeletar.Text = "Deletar";
-            this.btndeletar.UseVisualStyleBackColor = true;
-            // 
-            // btnbuscar
-            // 
-            this.btnbuscar.Location = new System.Drawing.Point(207, 10);
-            this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnbuscar.TabIndex = 4;
-            this.btnbuscar.Text = "Buscar";
-            this.btnbuscar.UseVisualStyleBackColor = true;
-            // 
-            // lbltotal
-            // 
-            this.lbltotal.AutoSize = true;
-            this.lbltotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotal.Location = new System.Drawing.Point(511, 15);
-            this.lbltotal.Name = "lbltotal";
-            this.lbltotal.Size = new System.Drawing.Size(0, 13);
-            this.lbltotal.TabIndex = 5;
-            this.lbltotal.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // datalista
-            // 
-            this.datalista.AllowUserToAddRows = false;
-            this.datalista.AllowUserToDeleteRows = false;
-            this.datalista.AllowUserToOrderColumns = true;
-            this.datalista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datalista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Deletar});
-            this.datalista.Location = new System.Drawing.Point(9, 88);
-            this.datalista.MultiSelect = false;
-            this.datalista.Name = "datalista";
-            this.datalista.ReadOnly = true;
-            this.datalista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datalista.Size = new System.Drawing.Size(750, 254);
-            this.datalista.TabIndex = 6;
-            // 
-            // chkdeletar
-            // 
-            this.chkdeletar.AutoSize = true;
-            this.chkdeletar.Location = new System.Drawing.Point(47, 50);
-            this.chkdeletar.Name = "chkdeletar";
-            this.chkdeletar.Size = new System.Drawing.Size(60, 17);
-            this.chkdeletar.TabIndex = 7;
-            this.chkdeletar.Text = "Deletar";
-            this.chkdeletar.UseVisualStyleBackColor = true;
-            // 
-            // Deletar
-            // 
-            this.Deletar.HeaderText = "Deletar";
-            this.Deletar.Name = "Deletar";
-            this.Deletar.ReadOnly = true;
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(768, 348);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Configurações";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -219,23 +226,68 @@
             this.groupBox1.Text = "Categorias";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // label3
+            // btncancelar
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Código";
+            this.btncancelar.Location = new System.Drawing.Point(543, 228);
+            this.btncancelar.Name = "btncancelar";
+            this.btncancelar.Size = new System.Drawing.Size(75, 23);
+            this.btncancelar.TabIndex = 9;
+            this.btncancelar.Text = "Cancelar";
+            this.btncancelar.UseVisualStyleBackColor = true;
+            this.btncancelar.Click += new System.EventHandler(this.btncancelar_Click);
             // 
-            // label4
+            // btnnovo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 90);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Nome";
+            this.btnnovo.Location = new System.Drawing.Point(166, 228);
+            this.btnnovo.Name = "btnnovo";
+            this.btnnovo.Size = new System.Drawing.Size(75, 23);
+            this.btnnovo.TabIndex = 8;
+            this.btnnovo.Text = "Novo";
+            this.btnnovo.UseVisualStyleBackColor = true;
+            this.btnnovo.Click += new System.EventHandler(this.btnnovo_Click);
+            // 
+            // btneditar
+            // 
+            this.btneditar.Location = new System.Drawing.Point(415, 228);
+            this.btneditar.Name = "btneditar";
+            this.btneditar.Size = new System.Drawing.Size(75, 23);
+            this.btneditar.TabIndex = 7;
+            this.btneditar.Text = "Editar";
+            this.btneditar.UseVisualStyleBackColor = true;
+            this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
+            // 
+            // btnsalvar
+            // 
+            this.btnsalvar.Location = new System.Drawing.Point(288, 228);
+            this.btnsalvar.Name = "btnsalvar";
+            this.btnsalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnsalvar.TabIndex = 6;
+            this.btnsalvar.Text = "Salvar";
+            this.btnsalvar.UseVisualStyleBackColor = true;
+            this.btnsalvar.Click += new System.EventHandler(this.btnsalvar_Click);
+            // 
+            // txtdescricao
+            // 
+            this.txtdescricao.Location = new System.Drawing.Point(81, 139);
+            this.txtdescricao.Multiline = true;
+            this.txtdescricao.Name = "txtdescricao";
+            this.txtdescricao.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtdescricao.Size = new System.Drawing.Size(623, 66);
+            this.txtdescricao.TabIndex = 5;
+            // 
+            // txtnome
+            // 
+            this.txtnome.Location = new System.Drawing.Point(81, 87);
+            this.txtnome.Name = "txtnome";
+            this.txtnome.Size = new System.Drawing.Size(160, 20);
+            this.txtnome.TabIndex = 4;
+            // 
+            // txtidcategoria
+            // 
+            this.txtidcategoria.Location = new System.Drawing.Point(81, 36);
+            this.txtidcategoria.Name = "txtidcategoria";
+            this.txtidcategoria.Size = new System.Drawing.Size(160, 20);
+            this.txtidcategoria.TabIndex = 3;
             // 
             // label5
             // 
@@ -246,64 +298,23 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Descrição";
             // 
-            // txtidcategoria
+            // label4
             // 
-            this.txtidcategoria.Location = new System.Drawing.Point(81, 36);
-            this.txtidcategoria.Name = "txtidcategoria";
-            this.txtidcategoria.Size = new System.Drawing.Size(100, 20);
-            this.txtidcategoria.TabIndex = 3;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 90);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Nome";
             // 
-            // txtnome
+            // label3
             // 
-            this.txtnome.Location = new System.Drawing.Point(81, 87);
-            this.txtnome.Name = "txtnome";
-            this.txtnome.Size = new System.Drawing.Size(100, 20);
-            this.txtnome.TabIndex = 4;
-            // 
-            // txtdescricao
-            // 
-            this.txtdescricao.Location = new System.Drawing.Point(81, 139);
-            this.txtdescricao.Multiline = true;
-            this.txtdescricao.Name = "txtdescricao";
-            this.txtdescricao.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtdescricao.Size = new System.Drawing.Size(416, 66);
-            this.txtdescricao.TabIndex = 5;
-            // 
-            // btnsalvar
-            // 
-            this.btnsalvar.Location = new System.Drawing.Point(156, 233);
-            this.btnsalvar.Name = "btnsalvar";
-            this.btnsalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnsalvar.TabIndex = 6;
-            this.btnsalvar.Text = "Salvar";
-            this.btnsalvar.UseVisualStyleBackColor = true;
-            // 
-            // btneditar
-            // 
-            this.btneditar.Location = new System.Drawing.Point(292, 233);
-            this.btneditar.Name = "btneditar";
-            this.btneditar.Size = new System.Drawing.Size(75, 23);
-            this.btneditar.TabIndex = 7;
-            this.btneditar.Text = "Editar";
-            this.btneditar.UseVisualStyleBackColor = true;
-            // 
-            // btnnovo
-            // 
-            this.btnnovo.Location = new System.Drawing.Point(28, 233);
-            this.btnnovo.Name = "btnnovo";
-            this.btnnovo.Size = new System.Drawing.Size(75, 23);
-            this.btnnovo.TabIndex = 8;
-            this.btnnovo.Text = "Novo";
-            this.btnnovo.UseVisualStyleBackColor = true;
-            // 
-            // btncancelar
-            // 
-            this.btncancelar.Location = new System.Drawing.Point(423, 233);
-            this.btncancelar.Name = "btncancelar";
-            this.btncancelar.Size = new System.Drawing.Size(75, 23);
-            this.btncancelar.TabIndex = 9;
-            this.btncancelar.Text = "Cancelar";
-            this.btncancelar.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Código";
             // 
             // errorIcone
             // 
@@ -328,8 +339,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datalista)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcone)).EndInit();

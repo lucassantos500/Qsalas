@@ -14,8 +14,8 @@ namespace CamadaApresentação
     public partial class frmCategoria : Form
     {
 
-        private bool eNovo = false;
-        private bool eEditar = false;
+        private bool eNovo = false;//Variável referente ao click do botão "btnnovo"
+        private bool eEditar = false;//variável referente ao click do botão "btneditar"
 
         public frmCategoria()
         {
@@ -57,22 +57,22 @@ namespace CamadaApresentação
         //Habilitar botões
         private void Botoes()
         {
-            if (this.eNovo || this.eEditar)
+            if (this.eNovo || this.eEditar)//Se o eNovo ou eEditar for true (Alguem quer editar ou criar novo formulário)
             {
-                this.Habilitar(true);
-                this.btnnovo.Enabled = false;
-                this.btnsalvar.Enabled = true;
-                this.btneditar.Enabled = false;
-                this.btncancelar.Enabled = true;
+                this.Habilitar(true);//Habilitar as caixas de texto para escrita
+                this.btnnovo.Enabled = false;//Desabilitar botão Novo "btnnovo", pois já esta sendo feito a edição ou criação de novo registro
+                this.btnsalvar.Enabled = true;//Habilitar botão de Salvar "btnsalvar"
+                this.btneditar.Enabled = false;//Desabilitar botão Editar "btneditar", pois já esta sendo feito a edição ou criação de novo registro
+                this.btncancelar.Enabled = true;//Habilita o botão de Cancelar "btncancelar"
 
             }
-            else
+            else//Se o eNovo ou eEditar for false (Nada está sendo editado ou criado)
             {
-                this.Habilitar(false);
-                this.btnnovo.Enabled = true;
-                this.btnsalvar.Enabled = false;
-                this.btneditar.Enabled = true;
-                this.btncancelar.Enabled = false;
+                this.Habilitar(false);//Desabilitar as caixas de texto para escrita
+                this.btnnovo.Enabled = true;//Habilitar o botão Novo "btnnovo"
+                this.btnsalvar.Enabled = false;//Desabilitar o botão de Salvar "btnsalvar", pois nada esta sendo feito
+                this.btneditar.Enabled = true;//Habilitar o botão de Editar "btneditar"
+                this.btncancelar.Enabled = false;//Desabilitar o botão de Cancelar "btncancelar", pois nada esta sendo feito
             }
 
         }
@@ -80,11 +80,27 @@ namespace CamadaApresentação
         //Ocultar Colunas Grid
         private void ocultarColunas()
         {
-            this.datalista.Columns[0].Visible = false;
-            this.datalista.Columns[1].Visible = false;
+            this.datalista.Columns[0].Visible = false;//Oculta a coluna referente a deletar no Grid
+            this.datalista.Columns[1].Visible = false;//Oculta a coluna referente ao Código no Grid
         }
 
-        //42
+        //Mostrar no DataGrid
+         private void Mostrar()
+        {
+            this.datalista.DataSource = Ncategoria.Mostrar();//Mostra as categorias existentes
+            this.ocultarColunas();//Oculta colunas do DataGrid desnecessárias(Deletar,Código)
+            lbltotal.Text = "Total de registros: " + Convert.ToString(datalista.Rows.Count);//Atualiza a quantidade de registro no Label "lblTotal"
+        }
+
+        //Buscar pelo nome
+        private void buscarNome()
+        {
+            this.datalista.DataSource = Ncategoria.BuscarNome(this.txtbuscar.Text);//Busca nome passando o que está sendo digitado na caixa de texto "txtbuscar"
+            this.ocultarColunas();//Oculta colunas do DataGrid desnecessárias(Deletar,Código)
+            lbltotal.Text = "Total de registros: " + Convert.ToString(datalista.Rows.Count);//Atualiza a quantidade de registro no Label "lblTotal"
+        }
+
+
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -103,7 +119,181 @@ namespace CamadaApresentação
 
         private void frmCategoria_Load(object sender, EventArgs e)
         {
+            this.Top = 0;//Inicia no ponto 0 do eixo y (Mais alto possível)
+            this.Left = 0;//Inicia no ponto 0 do eixo x (Mais a esquerda possível)
+            this.Mostrar();//Ativa o dataGrid
+            this.Habilitar(false);//Desativa as caixas de texto
+            this.Botoes();//Ativa botões
 
+        }
+
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            this.buscarNome();
+        }
+
+        private void txtbuscar_TextChanged(object sender, EventArgs e)
+        {
+            this.buscarNome();
+        }
+
+        private void btnnovo_Click(object sender, EventArgs e)
+        {
+            this.eNovo = true;//Clicou no botão Novo(criar novo registro)
+            this.eEditar = false;//Como clicou no botão Novo(criar novo registro), não está editando
+            this.Botoes();//Ativar botões
+            this.Limpar();//Limpar caixas de texto
+            this.Habilitar(true);//Habilitar caixas de texto
+            this.txtnome.Focus();//Colocar o foco no nome
+            this.txtidcategoria.Enabled = false;//Desativa a caixa de texto do Código (É auto_increment)
+        }
+
+        private void btnsalvar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string resposta = "";
+                if(this.txtnome.Text == string.Empty)//Caso tenha deixado o campo "Nome" vazio
+                {
+                    mensagemError("Preencha todos os campos");
+                    errorIcone.SetError(txtnome, "Insira o nome");
+                    this.txtnome.Focus();//Coloca o foco no campo nome
+                }
+                else//Caso não tenha deixado o campo em branco
+                {
+                    if (this.eNovo)//Caso o eNovo(Clicou em botão novo) seja verdadeiro
+                    {
+                        //Inserir um novo registro
+                        resposta = Ncategoria.Inserir(this.txtnome.Text.Trim().ToUpper(), this.txtdescricao.Text.Trim().ToUpper());
+                    }
+                    else//Caso o eNovo(Clicou em botão novo) seja falso
+                    {
+                        //Editar um registro existente
+                        resposta = Ncategoria.Editar(Convert.ToInt32(this.txtidcategoria.Text), this.txtnome.Text.Trim().ToUpper(), this.txtdescricao.Text.Trim().ToUpper());
+                    }
+                    if (resposta.Equals("Ok"))//Caso tenha conseguido inserir ou editar com sucesso
+                    {
+                        if (this.eNovo)//Caso o eNovo(Clicou em botão novo) seja verdadeiro
+                        {
+                            this.mensagemOK("Registro salvo com sucesso");//Mostrar mensagem de sucesso ao criar novo registro
+                        }
+                        else//Caso o eNovo(Clicou em botão novo) seja falso
+                        {
+                            this.mensagemOK("Registro modificado com sucesso");//Mostrar mensagem de sucesso ao editar um registro já existente
+                        }
+                    }
+                    else//Caso não tenha conseguido inserir ou editar com sucesso
+                    {
+                        this.mensagemError(resposta);//Mostrar mensagem de erro de DCategoria destinado a novo formulário ou edição de um formulário já existente
+                    }
+                    this.eNovo = false;//Desativar o eNovo depois de salvar
+                    this.eEditar = false;//Desativar o eEditar depois de salvar
+                    this.Limpar();//Limpar caixas de texto
+                    this.Mostrar();//Atualizar o grid
+                    this.Botoes();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void datalista_DoubleClick(object sender, EventArgs e)//Caso dê um duplo click em um registro
+        {
+            this.txtidcategoria.Text = Convert.ToString(this.datalista.CurrentRow.Cells["idcategoria"].Value);//Pegar o Código do registro e preencher a caixa de texto Código com ele
+            this.txtnome.Text = Convert.ToString(this.datalista.CurrentRow.Cells["nome"].Value);//Pegar o Código do registro e preencher a caixa de texto Nome com ele
+            this.txtdescricao.Text = Convert.ToString(this.datalista.CurrentRow.Cells["descricao"].Value);//Pegar o Código do registro e preencher a caixa de texto Descrição com ele
+            //--------------------//
+            this.eEditar = true; //
+            this.Botoes();      //
+            //-----------------//
+            this.tabControl1.SelectedIndex = 1;//Mudar para a aba Configuração
+            
+        }
+
+        private void btneditar_Click(object sender, EventArgs e)
+        {
+            if (this.txtidcategoria.Text.Equals(""))
+            {
+                this.mensagemError("Selecione um registro para inserir");
+            }
+            else
+            {
+                this.eEditar = true;
+                this.Botoes();
+                this.Habilitar(true);
+
+            }
+        }
+
+        private void btncancelar_Click(object sender, EventArgs e)
+        {
+            this.eNovo = false;
+            this.eEditar = false;
+            this.Botoes();
+            this.Habilitar(false);
+            this.Limpar();
+        }
+
+        private void chkdeletar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkdeletar.Checked)
+            {
+                this.datalista.Columns[0].Visible = true;
+                this.datalista.Columns[1].Visible = true;
+
+            }
+            else
+            {
+                this.datalista.Columns[0].Visible = false;
+                this.datalista.Columns[1].Visible = false;
+            }
+        }
+
+        private void datalista_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == datalista.Columns["Deletar"].Index)
+            {
+                DataGridViewCheckBoxCell chkDeletar = (DataGridViewCheckBoxCell) datalista.Rows[e.RowIndex].Cells["Deletar"];
+                chkDeletar.Value = !Convert.ToBoolean(chkDeletar.Value);
+            }
+        }
+
+        private void btndeletar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult opcao;
+                opcao = MessageBox.Show("Realmente deseja apagar o(s) registro(s)?","SysSistema",MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (opcao == DialogResult.OK)
+                {
+                    string Cod;
+                    string resposta = "";
+                    foreach(DataGridViewRow linha in datalista.Rows)
+                    {
+                        if (Convert.ToBoolean(linha.Cells[0].Value))
+                        {
+                            Cod = Convert.ToString(linha.Cells[1].Value);
+                            resposta = Ncategoria.Deletar(Convert.ToInt32(Cod));
+                        }
+                    }
+                    if (resposta.Equals("Ok"))
+                    {
+                        this.mensagemOK("Registro(s) excluido(s) com sucesso");
+                    }
+                    else
+                    {
+                        this.mensagemError(resposta);
+                    }
+                    this.Mostrar();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
         }
     }
 }

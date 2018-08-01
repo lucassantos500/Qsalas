@@ -8,6 +8,6 @@ namespace CamadaDados
 {
     class conexao
     {
-        public static string conexaoDB = "Data Source = DESKTOP-138JLJ4; Initial Catalog = dbComercio; Integrated Security=true";
+        public static string conexaoDB = "Data Source = DESKTOP-138JLJ4\\SQLEXPRESS; Initial Catalog = dbComercio; Integrated Security=true";
     }
 }

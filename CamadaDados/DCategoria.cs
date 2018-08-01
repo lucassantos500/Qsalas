@@ -74,7 +74,7 @@ namespace CamadaDados
 
                 //Executar o comando de inserção
 
-                resposta = SqlCmd.ExecuteNonQuery() == 1 ? "Registro Inserido" : "Registro Não Inserido";
+                resposta = SqlCmd.ExecuteNonQuery() == 1 ? "Ok" : "Registro Não Inserido";
 
 
 
@@ -134,7 +134,7 @@ namespace CamadaDados
 
                     //Executar o comando de edição
 
-                    resposta = SqlCmd.ExecuteNonQuery() == 1 ? "Edição Inserida" : "Edição Não Inserida";
+                    resposta = SqlCmd.ExecuteNonQuery() == 1 ? "Ok" : "Edição Não Inserida";
                 }
                 catch (Exception ex)
                 {
@@ -174,6 +174,7 @@ namespace CamadaDados
                 ParIDcategoria.SqlDbType = SqlDbType.Int;
                 ParIDcategoria.Value = Categoria.Idcategoria;
                 SqlCmd.Parameters.Add(ParIDcategoria);
+                /*
                 //variável Nome
                 SqlParameter ParNome = new SqlParameter();
                 ParNome.ParameterName = "@nome";//nome da variável no procedure
@@ -188,10 +189,10 @@ namespace CamadaDados
                 ParDescricao.Size = 100;
                 ParDescricao.Value = Categoria.Descricao;
                 SqlCmd.Parameters.Add(ParDescricao);
-
+                */
                 //Executar o comando de edição
 
-                resposta = SqlCmd.ExecuteNonQuery() == 1 ? "Categoria Deletada" : "Categoria Não Deletada";
+                resposta = SqlCmd.ExecuteNonQuery() == 1 ? "Ok" : "Categoria Não Deletada";
             }
             catch (Exception ex)
             {
@@ -253,8 +254,6 @@ namespace CamadaDados
                 SqlCmd.Connection = SqlCon;
                 SqlCmd.CommandText = "spbuscar_nome";
                 SqlCmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter sqlDat = new SqlDataAdapter(SqlCmd);
-                sqlDat.Fill(DtResultado);
 
                 //variável texto buscar
                 SqlParameter ParTextoBuscar = new SqlParameter();
@@ -263,6 +262,9 @@ namespace CamadaDados
                 ParTextoBuscar.Size = 50;
                 ParTextoBuscar.Value = Categoria.TextoBuscar;
                 SqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(SqlCmd);
+                sqlDat.Fill(DtResultado);
             }
             catch (Exception ex)
             {
