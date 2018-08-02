@@ -5,4 +5,4 @@
 
 **Modelo em três camadas (3-Tier)**
 
-![alt text](http://www.macoratti.net/10/04/lnq3cam1.gif)
+![alt text](https://uploaddeimagens.com.br/images/001/541/640/full/3CAMADAS.png?1533223546)
