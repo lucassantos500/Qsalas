@@ -11,18 +11,16 @@ using CamadaNegocio;
 
 namespace CamadaApresentação
 {
-    public partial class frmCategoria : Form
+    public partial class frmApresentacao : Form
     {
-
         private bool eNovo = false;//Variável referente ao click do botão "btnnovo"
         private bool eEditar = false;//variável referente ao click do botão "btneditar"
 
-        public frmCategoria()
+        public frmApresentacao()
         {
             InitializeComponent();
-            this.ttmensagem.SetToolTip(this.txtnome, "Insira o nome da Categoria");
-            this.ttmensagem.SetToolTip(this.txtidcategoria, "Insira o código da Categoria");
-
+            this.ttmensagem.SetToolTip(this.txtnome, "Insira o nome da Apresentação");
+            this.ttmensagem.SetToolTip(this.txtidapresentacao, "Insira o código da Apresentação");
         }
 
         //Mostrar mensagem de confirmação
@@ -41,7 +39,7 @@ namespace CamadaApresentação
         private void Limpar()
         {
             this.txtnome.Text = String.Empty;
-            this.txtidcategoria.Text = String.Empty;
+            this.txtidapresentacao.Text = String.Empty;
             this.txtdescricao.Text = String.Empty;
         }
 
@@ -50,7 +48,7 @@ namespace CamadaApresentação
         {
             this.txtnome.ReadOnly = !valor;
             this.txtdescricao.ReadOnly = !valor;
-            this.txtidcategoria.ReadOnly = !valor;
+            this.txtidapresentacao.ReadOnly = !valor;
 
         }
 
@@ -64,7 +62,7 @@ namespace CamadaApresentação
                 this.btnsalvar.Enabled = true;//Habilitar botão de Salvar "btnsalvar"
                 this.btneditar.Enabled = false;//Desabilitar botão Editar "btneditar", pois já esta sendo feito a edição ou criação de novo registro
                 this.btncancelar.Enabled = true;//Habilita o botão de Cancelar "btncancelar"
-               
+
             }
             else//Se o eNovo ou eEditar for false (Nada está sendo editado ou criado)
             {
@@ -85,9 +83,9 @@ namespace CamadaApresentação
         }
 
         //Mostrar no DataGrid
-         private void Mostrar()
+        private void Mostrar()
         {
-            this.datalista.DataSource = Ncategoria.Mostrar();//Mostra as categorias existentes
+            this.datalista.DataSource = Napresentacao.Mostrar();//Mostra as apresentações existentes
             this.ocultarColunas();//Oculta colunas do DataGrid desnecessárias(Deletar,Código)
             lbltotal.Text = "Total de registros: " + Convert.ToString(datalista.Rows.Count);//Atualiza a quantidade de registro no Label "lblTotal"
         }
@@ -95,37 +93,24 @@ namespace CamadaApresentação
         //Buscar pelo nome
         private void buscarNome()
         {
-            this.datalista.DataSource = Ncategoria.BuscarNome(this.txtbuscar.Text);//Busca nome passando o que está sendo digitado na caixa de texto "txtbuscar"
+            this.datalista.DataSource = Napresentacao.BuscarNome(this.txtbuscar.Text);//Busca nome passando o que está sendo digitado na caixa de texto "txtbuscar"
             this.ocultarColunas();//Oculta colunas do DataGrid desnecessárias(Deletar,Código)
             lbltotal.Text = "Total de registros: " + Convert.ToString(datalista.Rows.Count);//Atualiza a quantidade de registro no Label "lblTotal"
         }
 
-
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
         //O que acontece quando form é carregada
-        private void frmCategoria_Load(object sender, EventArgs e)
+        private void frmApresentacao_Load(object sender, EventArgs e)
         {
             this.Top = 0;//Inicia no ponto 0 do eixo y (Mais alto possível)
             this.Left = 0;//Inicia no ponto 0 do eixo x (Mais a esquerda possível)
             this.Mostrar();//Ativa o dataGrid
             this.Habilitar(false);//Desativa as caixas de texto
             this.Botoes();//Ativa botões
-
         }
 
         //Clicar no botão buscar
@@ -134,7 +119,7 @@ namespace CamadaApresentação
             this.buscarNome();
         }
 
-        //digitar categoria a pesquisar
+        //digitar apresentação a pesquisar
         private void txtbuscar_TextChanged(object sender, EventArgs e)
         {
             this.buscarNome();
@@ -149,7 +134,7 @@ namespace CamadaApresentação
             this.Limpar();//Limpar caixas de texto
             this.Habilitar(true);//Habilitar caixas de texto
             this.txtnome.Focus();//Colocar o foco no nome
-            this.txtidcategoria.Enabled = false;//Desativa a caixa de texto do Código (É auto_increment)
+            this.txtidapresentacao.Enabled = false;//Desativa a caixa de texto do Código (É auto_increment)
         }
 
         //Clicar no botão salvar
@@ -158,7 +143,7 @@ namespace CamadaApresentação
             try
             {
                 string resposta = "";
-                if(this.txtnome.Text == string.Empty)//Caso tenha deixado o campo "Nome" vazio
+                if (this.txtnome.Text == string.Empty)//Caso tenha deixado o campo "Nome" vazio
                 {
                     mensagemError("Preencha todos os campos");
                     errorIcone.SetError(txtnome, "Insira o nome");
@@ -169,12 +154,12 @@ namespace CamadaApresentação
                     if (this.eNovo)//Caso o eNovo(Clicou em botão novo) seja verdadeiro
                     {
                         //Inserir um novo registro
-                        resposta = Ncategoria.Inserir(this.txtnome.Text.Trim().ToUpper(), this.txtdescricao.Text.Trim().ToUpper());
+                        resposta = Napresentacao.Inserir(this.txtnome.Text.Trim().ToUpper(), this.txtdescricao.Text.Trim().ToUpper());
                     }
                     else//Caso o eNovo(Clicou em botão novo) seja falso
                     {
                         //Editar um registro existente
-                        resposta = Ncategoria.Editar(Convert.ToInt32(this.txtidcategoria.Text), this.txtnome.Text.Trim().ToUpper(), this.txtdescricao.Text.Trim().ToUpper());
+                        resposta = Napresentacao.Editar(Convert.ToInt32(this.txtidapresentacao.Text), this.txtnome.Text.Trim().ToUpper(), this.txtdescricao.Text.Trim().ToUpper());
                     }
                     if (resposta.Equals("Ok"))//Caso tenha conseguido inserir ou editar com sucesso
                     {
@@ -189,7 +174,7 @@ namespace CamadaApresentação
                     }
                     else//Caso não tenha conseguido inserir ou editar com sucesso
                     {
-                        this.mensagemError(resposta);//Mostrar mensagem de erro de DCategoria destinado a novo formulário ou edição de um formulário já existente
+                        this.mensagemError(resposta);//Mostrar mensagem de erro de DApresentação destinado a novo formulário ou edição de um formulário já existente
                     }
                     this.eNovo = false;//Desativar o eNovo depois de salvar
                     this.eEditar = false;//Desativar o eEditar depois de salvar
@@ -198,16 +183,16 @@ namespace CamadaApresentação
                     this.Botoes();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
         }
 
         //clicar duas vezes em um item da lista
-        private void datalista_DoubleClick(object sender, EventArgs e)//Caso dê um duplo click em um registro
+        private void datalista_DoubleClick(object sender, EventArgs e)
         {
-            this.txtidcategoria.Text = Convert.ToString(this.datalista.CurrentRow.Cells["idcategoria"].Value);//Pegar o Código do registro e preencher a caixa de texto Código com ele
+            this.txtidapresentacao.Text = Convert.ToString(this.datalista.CurrentRow.Cells["idapresentacao"].Value);//Pegar o Código do registro e preencher a caixa de texto Código com ele
             this.txtnome.Text = Convert.ToString(this.datalista.CurrentRow.Cells["nome"].Value);//Pegar o Código do registro e preencher a caixa de texto Nome com ele
             this.txtdescricao.Text = Convert.ToString(this.datalista.CurrentRow.Cells["descricao"].Value);//Pegar o Código do registro e preencher a caixa de texto Descrição com ele
             //--------------------//
@@ -215,13 +200,12 @@ namespace CamadaApresentação
             this.Botoes();      //
             //-----------------//
             this.tabControl1.SelectedIndex = 1;//Mudar para a aba Configuração
-            
         }
 
         //Clicar no botão editar
         private void btneditar_Click(object sender, EventArgs e)
         {
-            if (this.txtidcategoria.Text.Equals(""))//caso o campo Nome esteja vazio
+            if (this.txtidapresentacao.Text.Equals(""))//caso o campo Nome esteja vazio
             {
                 this.mensagemError("Selecione um registro para inserir");//Mensagem de erro
             }
@@ -263,9 +247,9 @@ namespace CamadaApresentação
         //Check box deletar dentro do DataGrid após o chkdeletar estar ativado
         private void datalista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == datalista.Columns["Deletar"].Index)
+            if (e.ColumnIndex == datalista.Columns["Deletar"].Index)
             {
-                DataGridViewCheckBoxCell chkDeletar = (DataGridViewCheckBoxCell) datalista.Rows[e.RowIndex].Cells["Deletar"];//pega a linha que esta marcada como check
+                DataGridViewCheckBoxCell chkDeletar = (DataGridViewCheckBoxCell)datalista.Rows[e.RowIndex].Cells["Deletar"];//pega a linha que esta marcada como check
                 chkDeletar.Value = !Convert.ToBoolean(chkDeletar.Value);//pega a linha que esta marcada como check
             }
         }
@@ -276,17 +260,17 @@ namespace CamadaApresentação
             try
             {
                 DialogResult opcao;
-                opcao = MessageBox.Show("Realmente deseja apagar o(s) registro(s)?","SysSistema",MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                opcao = MessageBox.Show("Realmente deseja apagar o(s) registro(s)?", "SysSistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (opcao == DialogResult.OK)//Se a resposta do MessaBox for Ok
                 {
                     string Cod;
                     string resposta = "";
-                    foreach(DataGridViewRow linha in datalista.Rows)//Procura em cada linha do DataGrid
+                    foreach (DataGridViewRow linha in datalista.Rows)//Procura em cada linha do DataGrid
                     {
                         if (Convert.ToBoolean(linha.Cells[0].Value))//Se estiver marcada como check
                         {
                             Cod = Convert.ToString(linha.Cells[1].Value);//Pegar código do registro dessa linha
-                            resposta = Ncategoria.Deletar(Convert.ToInt32(Cod));//Deletar registro
+                            resposta = Napresentacao.Deletar(Convert.ToInt32(Cod));//Deletar registro
                         }
                     }
                     if (resposta.Equals("Ok"))//Caso tudo tenha dado Ok
