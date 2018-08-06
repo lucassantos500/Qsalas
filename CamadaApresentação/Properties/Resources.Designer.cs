@@ -59,5 +59,15 @@ namespace CamadaApresentação.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_image_icon_15 {
+            get {
+                object obj = ResourceManager.GetObject("no-image-icon-15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
