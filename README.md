@@ -5,4 +5,4 @@
 
 **Modelo em três camadas (3-Tier)**
 
-![alt text](https://uploaddeimagens.com.br/images/001/541/640/full/3CAMADAS.png?1533223546)
+![alt text](https://uploaddeimagens.com.br/images/001/547/525/full/Opera_Instant%C3%A2neo_2018-08-06_124155_docs.google.com.png?1533570144)
