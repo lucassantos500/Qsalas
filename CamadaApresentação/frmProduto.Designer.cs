@@ -42,6 +42,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbidapresentacao = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnbuscarcategoria = new System.Windows.Forms.Button();
+            this.txtcategoria = new System.Windows.Forms.TextBox();
+            this.txtidcategoria = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnlimpar = new System.Windows.Forms.Button();
             this.btncarregar = new System.Windows.Forms.Button();
             this.pximagem = new System.Windows.Forms.PictureBox();
@@ -60,12 +66,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.errorIcone = new System.Windows.Forms.ErrorProvider(this.components);
             this.ttmensagem = new System.Windows.Forms.ToolTip(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtidcategoria = new System.Windows.Forms.TextBox();
-            this.txtcategoria = new System.Windows.Forms.TextBox();
-            this.btnbuscarcategoria = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbidapresentacao = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalista)).BeginInit();
@@ -112,6 +112,7 @@
             this.chkdeletar.TabIndex = 7;
             this.chkdeletar.Text = "Deletar";
             this.chkdeletar.UseVisualStyleBackColor = true;
+            this.chkdeletar.CheckedChanged += new System.EventHandler(this.chkdeletar_CheckedChanged);
             // 
             // datalista
             // 
@@ -128,6 +129,8 @@
             this.datalista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalista.Size = new System.Drawing.Size(750, 254);
             this.datalista.TabIndex = 6;
+            this.datalista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalista_CellContentClick);
+            this.datalista.DoubleClick += new System.EventHandler(this.datalista_DoubleClick);
             // 
             // Deletar
             // 
@@ -153,6 +156,7 @@
             this.btnbuscar.TabIndex = 4;
             this.btnbuscar.Text = "Buscar";
             this.btnbuscar.UseVisualStyleBackColor = true;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
             // btndeletar
             // 
@@ -162,6 +166,7 @@
             this.btndeletar.TabIndex = 3;
             this.btndeletar.Text = "Deletar";
             this.btndeletar.UseVisualStyleBackColor = true;
+            this.btndeletar.Click += new System.EventHandler(this.btndeletar_Click);
             // 
             // btnimprimir
             // 
@@ -178,6 +183,7 @@
             this.txtbuscar.Name = "txtbuscar";
             this.txtbuscar.Size = new System.Drawing.Size(144, 20);
             this.txtbuscar.TabIndex = 1;
+            this.txtbuscar.TextChanged += new System.EventHandler(this.txtbuscar_TextChanged);
             // 
             // label2
             // 
@@ -230,6 +236,56 @@
             this.groupBox1.Text = "Produtos";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // cbidapresentacao
+            // 
+            this.cbidapresentacao.FormattingEnabled = true;
+            this.cbidapresentacao.Location = new System.Drawing.Point(398, 36);
+            this.cbidapresentacao.Name = "cbidapresentacao";
+            this.cbidapresentacao.Size = new System.Drawing.Size(132, 21);
+            this.cbidapresentacao.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(319, 39);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Apresentacao";
+            // 
+            // btnbuscarcategoria
+            // 
+            this.btnbuscarcategoria.Location = new System.Drawing.Point(113, 166);
+            this.btnbuscarcategoria.Name = "btnbuscarcategoria";
+            this.btnbuscarcategoria.Size = new System.Drawing.Size(75, 23);
+            this.btnbuscarcategoria.TabIndex = 18;
+            this.btnbuscarcategoria.Text = "Buscar Categoria";
+            this.btnbuscarcategoria.UseVisualStyleBackColor = true;
+            this.btnbuscarcategoria.Click += new System.EventHandler(this.btnbuscarcategoria_Click);
+            // 
+            // txtcategoria
+            // 
+            this.txtcategoria.Location = new System.Drawing.Point(113, 140);
+            this.txtcategoria.Name = "txtcategoria";
+            this.txtcategoria.Size = new System.Drawing.Size(160, 20);
+            this.txtcategoria.TabIndex = 17;
+            // 
+            // txtidcategoria
+            // 
+            this.txtidcategoria.Location = new System.Drawing.Point(113, 114);
+            this.txtidcategoria.Name = "txtidcategoria";
+            this.txtidcategoria.Size = new System.Drawing.Size(160, 20);
+            this.txtidcategoria.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(55, 143);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(52, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Categoria";
+            // 
             // btnlimpar
             // 
             this.btnlimpar.Location = new System.Drawing.Point(675, 125);
@@ -238,6 +294,7 @@
             this.btnlimpar.TabIndex = 14;
             this.btnlimpar.Text = "Limpar Img";
             this.btnlimpar.UseVisualStyleBackColor = true;
+            this.btnlimpar.Click += new System.EventHandler(this.btnlimpar_Click);
             // 
             // btncarregar
             // 
@@ -286,6 +343,7 @@
             this.btncancelar.TabIndex = 9;
             this.btncancelar.Text = "Cancelar";
             this.btncancelar.UseVisualStyleBackColor = true;
+            this.btncancelar.Click += new System.EventHandler(this.btncancelar_Click);
             // 
             // btnnovo
             // 
@@ -295,6 +353,7 @@
             this.btnnovo.TabIndex = 8;
             this.btnnovo.Text = "Novo";
             this.btnnovo.UseVisualStyleBackColor = true;
+            this.btnnovo.Click += new System.EventHandler(this.btnnovo_Click);
             // 
             // btneditar
             // 
@@ -304,6 +363,7 @@
             this.btneditar.TabIndex = 7;
             this.btneditar.Text = "Editar";
             this.btneditar.UseVisualStyleBackColor = true;
+            this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
             // 
             // btnsalvar
             // 
@@ -313,6 +373,7 @@
             this.btnsalvar.TabIndex = 6;
             this.btnsalvar.Text = "Salvar";
             this.btnsalvar.UseVisualStyleBackColor = true;
+            this.btnsalvar.Click += new System.EventHandler(this.btnsalvar_Click);
             // 
             // txtdescricao
             // 
@@ -382,55 +443,6 @@
             // ttmensagem
             // 
             this.ttmensagem.IsBalloon = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(55, 143);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Categoria";
-            // 
-            // txtidcategoria
-            // 
-            this.txtidcategoria.Location = new System.Drawing.Point(113, 114);
-            this.txtidcategoria.Name = "txtidcategoria";
-            this.txtidcategoria.Size = new System.Drawing.Size(160, 20);
-            this.txtidcategoria.TabIndex = 16;
-            // 
-            // txtcategoria
-            // 
-            this.txtcategoria.Location = new System.Drawing.Point(113, 140);
-            this.txtcategoria.Name = "txtcategoria";
-            this.txtcategoria.Size = new System.Drawing.Size(160, 20);
-            this.txtcategoria.TabIndex = 17;
-            // 
-            // btnbuscarcategoria
-            // 
-            this.btnbuscarcategoria.Location = new System.Drawing.Point(113, 166);
-            this.btnbuscarcategoria.Name = "btnbuscarcategoria";
-            this.btnbuscarcategoria.Size = new System.Drawing.Size(75, 23);
-            this.btnbuscarcategoria.TabIndex = 18;
-            this.btnbuscarcategoria.Text = "Buscar Categoria";
-            this.btnbuscarcategoria.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(319, 39);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Apresentacao";
-            // 
-            // cbidapresentacao
-            // 
-            this.cbidapresentacao.FormattingEnabled = true;
-            this.cbidapresentacao.Location = new System.Drawing.Point(398, 36);
-            this.cbidapresentacao.Name = "cbidapresentacao";
-            this.cbidapresentacao.Size = new System.Drawing.Size(132, 21);
-            this.cbidapresentacao.TabIndex = 20;
             // 
             // frmProduto
             // 

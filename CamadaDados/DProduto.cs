@@ -156,6 +156,13 @@ namespace CamadaDados
                 ParIDproduto.SqlDbType = SqlDbType.Int;
                 ParIDproduto.Value = Produto.Idproduto;
                 SqlCmd.Parameters.Add(ParIDproduto);
+                //variável Código
+                SqlParameter ParCodigo = new SqlParameter();
+                ParCodigo.ParameterName = "@codigo";//nome da variável no procedure
+                ParCodigo.SqlDbType = SqlDbType.VarChar;
+                ParCodigo.Size = 50;
+                ParCodigo.Value = Produto.Codigo;
+                SqlCmd.Parameters.Add(ParCodigo);
                 //variável Nome
                 SqlParameter ParNome = new SqlParameter();
                 ParNome.ParameterName = "@nome";//nome da variável no procedure
