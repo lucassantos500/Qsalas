@@ -2,6 +2,7 @@
 **Diagrama Entidade Relacionamento - Banco de dados dbComercio**
 
 ![alt text](https://image.ibb.co/dtOLae/Diagrama_ER.png)
+obs: Interface de categoria, produto e apresentação prontos.
 
 **Modelo em três camadas (3-Tier)**
 
